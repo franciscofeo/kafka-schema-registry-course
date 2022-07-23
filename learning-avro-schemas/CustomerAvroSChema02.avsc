@@ -1,0 +1,76 @@
+[
+    {
+        "name": "CustomerAddress",
+        "namespace": "br.com.franciscoangelo.avro",
+        "type": "record",
+        "fields": [
+            {
+                "name": "address",
+                "type": "string"
+            },
+            {
+                "name": "city",
+                "type": "string"
+            },
+            {
+                "name": "postcode",
+                "type": [
+                    "int",
+                    "string"
+                ]
+            },
+            {
+                "name": "type",
+                "type": "enum",
+                "symbols": [
+                    "PO BOX",
+                    "RESIDENTIAL",
+                    "ENTERPRISE"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "CustomerAvroSchema02",
+        "type": "record",
+        "namespace": "br.com.franciscoangelo.avro",
+        "doc": "Avro Schema for Customer entity with CustomerAddress entity nested",
+        "fields": [
+            {
+                "name": "firstName",
+                "type": "string"
+            },
+            {
+                "name": "middleName",
+                "type": [
+                    "null",
+                    "string"
+                ],
+                "default": null
+            },
+            {
+                "name": "lastName",
+                "type": "string"
+            },
+            {
+                "name": "age",
+                "type": "int"
+            },
+            {
+                "name": "automatedEmail",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "name": "customerEmails",
+                "type": "array",
+                "items": "string",
+                "default": []
+            },
+            {
+                "name": "customerAddress",
+                "type": "br.com.franciscoangelo.avro.CustomerAddress"
+            }
+        ]
+    }
+]

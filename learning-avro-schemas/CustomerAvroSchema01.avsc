@@ -1,0 +1,58 @@
+{
+    "name": "CustomerAvroSchema01",
+    "type": "record",
+    "namespace": "br.com.franciscoangelo.avro",
+    "doc": "Avro Schema for Customer Entity",
+    "fields": [
+        {
+            "name": "firstName",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "lastName",
+            "type": [
+                "null",
+                "string"
+            ],
+            "default": null
+        },
+        {
+            "name": "age",
+            "type": [
+                "null",
+                "int"
+            ],
+            "default": null
+        },
+        {
+            "name": "height",
+            "type": [
+                "null",
+                "float"
+            ],
+            "default": null,
+            "doc": "Height in meters"
+        },
+        {
+            "name": "weight",
+            "type": [
+                "null",
+                "float"
+            ],
+            "default": null,
+            "doc": "Weight in kgs"
+        },
+        {
+            "name": "automatedEmail",
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "default": true
+        }
+    ]
+}
