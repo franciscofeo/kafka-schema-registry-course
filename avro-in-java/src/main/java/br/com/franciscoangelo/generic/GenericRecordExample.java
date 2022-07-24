@@ -1,4 +1,4 @@
-package br.com.franciscoangelo;
+package br.com.franciscoangelo.generic;
 
 import java.io.File;
 import java.io.IOException;
