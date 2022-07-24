@@ -1,6 +1,6 @@
 package br.com.franciscoangelo.specific;
 
-import com.example.Customer;
+import br.com.franciscoangelo.avro.CustomerAvroV1;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
 import org.apache.avro.io.DatumReader;
@@ -16,7 +16,7 @@ public class SpecificRecordExample {
     public static void main(String[] args) {
 
         // step 1: build specific record
-        CustomerAvro.Builder customerBuilder = CustomerAvro.newBuilder();
+        CustomerAvroV1.Builder customerBuilder = CustomerAvroV1.newBuilder();
         customerBuilder.setAge(30);
         customerBuilder.setFirstName("Mark");
         customerBuilder.setLastName("Simpson");
@@ -24,12 +24,12 @@ public class SpecificRecordExample {
         customerBuilder.setHeight(180f);
         customerBuilder.setWeight(90f);
 
-        CustomerAvro customer = customerBuilder.build();
+        CustomerAvroV1 customer = customerBuilder.build();
         System.out.println(customer.toString());
 
         // step 2: write to a file
-        final DatumWriter<CustomerAvro> datumWriter = new SpecificDatumWriter<>(CustomerAvro.class);
-        try (DataFileWriter<CustomerAvro> dataFileWriter = new DataFileWriter<>(datumWriter)) {
+        final DatumWriter<CustomerAvroV1> datumWriter = new SpecificDatumWriter<>(CustomerAvroV1.class);
+        try (DataFileWriter<CustomerAvroV1> dataFileWriter = new DataFileWriter<>(datumWriter)) {
             dataFileWriter.create(customer.getSchema(), new File("customer-specific.avro"));
             dataFileWriter.append(customer);
             System.out.println("successfully wrote customer-specific.avro");
@@ -39,13 +39,13 @@ public class SpecificRecordExample {
 
         // step 3: read from a file
         final File file = new File("customer-specific.avro");
-        final DatumReader<CustomerAvro> datumReader = new SpecificDatumReader<>(CustomerAvro.class);
-        final DataFileReader<CustomerAvro> dataFileReader;
+        final DatumReader<CustomerAvroV1> datumReader = new SpecificDatumReader<>(CustomerAvroV1.class);
+        final DataFileReader<CustomerAvroV1> dataFileReader;
         try {
             System.out.println("Reading our specific record");
             dataFileReader = new DataFileReader<>(file, datumReader);
             while (dataFileReader.hasNext()) {
-                CustomerAvro readCustomer = dataFileReader.next();
+                CustomerAvroV1 readCustomer = dataFileReader.next();
                 System.out.println(readCustomer.toString());
                 System.out.println("First name: " + readCustomer.getFirstName());
             }
